@@ -1,8 +1,6 @@
-lib/*.js
-lib/*.map
+lib/
 
 tests/*.js
-tests/*.map
 
 node_modules/*
 
