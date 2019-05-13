@@ -1,0 +1,18 @@
+{
+  "name": "nisanci",
+  "version": "1.0.0",
+  "description": "Nisanci is yet another logger",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "node tests/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logger",
+    "typescript",
+    "javascript"
+  ],
+  "author": "Ali GOREN",
+  "license": "MIT"
+}

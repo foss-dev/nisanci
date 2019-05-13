@@ -1,0 +1,11 @@
+lib/*.js
+lib/*.map
+
+tests/*.js
+tests/*.map
+
+node_modules/*
+
+logs
+*.log
+npm-debug.log*
