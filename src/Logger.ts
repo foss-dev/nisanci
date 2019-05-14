@@ -1,4 +1,5 @@
 import LogTypes, { Levels } from './LogTypes'
+import LogServer from './LogServer'
 
 /**
  * @description Logger class. This class will have logging functions
@@ -7,11 +8,30 @@ import LogTypes, { Levels } from './LogTypes'
 class Logger {
 
 	private config: any = {
-		server: {}
+		useServer: false,
+		endPoint: '',
+		method: 'POST',
+		headers: {},
+		body: {}
 	}
+
+	private server: LogServer
 
 	constructor(logConfig?: any) {
 		this.config = logConfig
+
+		this.server = new LogServer(this.config.server)
+	}
+
+	/**
+	 * @description Send extra fields to the log backend
+	 * @function send
+	 * @param sendBody Extra body field
+	 * @example
+	 * 	loggerInstance.send({ pageUrl: 'test', 'time': '12:30' })
+	 */
+	public send(sendBody?: any) {
+		return this.server.sendToLogServer(sendBody)
 	}
 
 	/**
