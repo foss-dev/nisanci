@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "node tests/index.js",
+    "doc": "esdoc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

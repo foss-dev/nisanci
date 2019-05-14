@@ -1,5 +1,6 @@
 import LogTypes, { Levels } from './LogTypes'
 import LogServer from './LogServer'
+import Colors from './Colors'
 
 /**
  * @description Logger class. This class will have logging functions
@@ -26,7 +27,7 @@ class Logger {
 	/**
 	 * @description Send extra fields to the log backend
 	 * @function send
-	 * @param sendBody Extra body field
+	 * @param sendBody - Extra body field
 	 * @example
 	 * 	loggerInstance.send({ pageUrl: 'test', 'time': '12:30' })
 	 */
@@ -37,24 +38,28 @@ class Logger {
 	/**
 	 * @description Debug Level Message
 	 * @function debug
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example 
 	 * 	loggerInstance.debug('Debug User', { username: 'John' })
 	 */
 	debug(message: string, context: any) {
 		const logCode = LogTypes.DEBUG
 		const levelName = Levels.GET(logCode)
+		const colors = Colors.GET('node')
 
+		/**
+		 * @todo This section will change. This needs formatted output
+		 */
 		console.log(logCode, levelName)
-
+		console.log(`${colors.FgWhite}${colors.BgRed}%s`, `${levelName}`, colors.Reset, '-', message);
 	}
 	
 	/**
 	 * @description Informational messages
 	 * @function info
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.info('Info User', { username: 'John' })
 	 */
@@ -69,8 +74,8 @@ class Logger {
 	/**
 	 * @description Normal but significant condition
 	 * @function notice
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.notice('Notice User', { username: 'John' })
 	 */
@@ -85,8 +90,8 @@ class Logger {
 	/**
 	 * @description You can use to show deprecated messages, old API or functions
 	 * @function warning
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.warning('Warning User', { username: 'John' })
 	 */
@@ -101,8 +106,8 @@ class Logger {
 	/**
 	 * @description Runtime errors, for example when parseInt or toFixed errors work wrong
 	 * @function error
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.error('Error User', { username: 'John' })
 	 */
@@ -117,8 +122,8 @@ class Logger {
 	/**
 	 * @description Components unavailable or unexpected exceptions
 	 * @function critical
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.critical('Critical message User', { username: 'John' })
 	 */
@@ -133,8 +138,8 @@ class Logger {
 	/**
 	 * @description Action must be taken immediately. 
 	 * @function alert
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.alert('Alert message User', { username: 'John' })
 	 */
@@ -149,8 +154,8 @@ class Logger {
 	/**
 	 * @description System is unusable
 	 * @function emergency
-	 * @param message any type of message
-	 * @param context Context will use to handle params. For example user IP address, username etc.
+	 * @param message - any type of message
+	 * @param context - Context will use to handle params. For example user IP address, username etc.
 	 * @example
 	 * 	loggerInstance.emergency('Emergency message User', { username: 'John' })
 	 */
