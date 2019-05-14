@@ -1,4 +1,5 @@
-lib/
+lib/*
+lib/src/*
 
 tests/*.js
 
