@@ -59,10 +59,21 @@ class LogServer {
 	 * @function sendToLogServer
 	 * @param sendBody
 	 */
-	public sendToLogServer(sendBody?: any) {
+	private sendToLogServer(sendBody?: any) {
 		if (this.settings.useServer) {
 			this.sendToServer(sendBody)
 		}
+	}
+
+	/**
+	 * @description Send extra fields to the log backend
+	 * @function send
+	 * @param sendBody - Extra body field
+	 * @example
+	 * 	loggerInstance.send({ pageUrl: 'test', 'time': '12:30' })
+	 */
+	send(sendBody?: any) {
+		return this.sendToLogServer(sendBody)
 	}
 }
 
