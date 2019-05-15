@@ -8,6 +8,9 @@ import Colors from './Colors'
  */
 class Logger {
 
+	private isFormatted: boolean
+	private formattedString: string
+
 	private config: any = {
 		useServer: false,
 		endPoint: '',
@@ -22,17 +25,11 @@ class Logger {
 		this.config = logConfig
 
 		this.server = new LogServer(this.config.server)
+
 	}
 
-	/**
-	 * @description Send extra fields to the log backend
-	 * @function send
-	 * @param sendBody - Extra body field
-	 * @example
-	 * 	loggerInstance.send({ pageUrl: 'test', 'time': '12:30' })
-	 */
-	public send(sendBody?: any) {
-		return this.server.sendToLogServer(sendBody)
+	public setFormat(formatStr: string) {
+		this.isFormatted = true
 	}
 
 	/**
@@ -46,7 +43,8 @@ class Logger {
 	debug(message: string, context: any) {
 		const logCode = LogTypes.DEBUG
 		const levelName = Levels.GET(logCode)
-		const colors = Colors.GET('node')
+		const colors = Colors.Node //Colors.GET('node')
+		
 
 		/**
 		 * @todo This section will change. This needs formatted output
