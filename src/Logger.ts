@@ -2,6 +2,8 @@ import LogTypes, { Levels } from './LogTypes'
 import LogServer from './LogServer'
 import Colors from './Colors'
 
+// inspired by: https://stackify.com/php-monolog-tutorial/
+
 /**
  * @description Logger class. This class will have logging functions
  * @class Logger
@@ -10,13 +12,21 @@ class Logger {
 
 	private isFormatted: boolean
 	private formattedString: string
+	
+	/**
+	 * Singleton instance
+	 */
+	private instance: Logger
 
 	private config: any = {
-		useServer: false,
-		endPoint: '',
-		method: 'POST',
-		headers: {},
-		body: {}
+		platform: 'web',
+		server: {
+			useServer: false,
+			endPoint: '',
+			method: 'POST',
+			headers: {},
+			body: {}
+		}
 	}
 
 	private server: LogServer
@@ -26,10 +36,58 @@ class Logger {
 
 		this.server = new LogServer(this.config.server)
 
+		if (!this.instance) {
+			this.instance = this
+		}
+
+		return this
+
 	}
 
+	/**
+	 * @description This helps to get date with time
+	 * @function getDateWithTime
+	 * @example this.getDateWithTime() // output: 2019-05-16 12:03:48
+	 */
+	private getDateWithTime() {
+		const date = (new Date()).toISOString().split('T')[0]
+		const time = (new Date()).toISOString().split('T')[1].slice(0, 8)
+
+		return `${date} ${time}`
+	}
+
+	/**
+	 * @description This method will help to customize log messages.
+	 * @param formatStr - The string which will formatted
+	 * @todo
+	 */
 	public setFormat(formatStr: string) {
 		this.isFormatted = true
+	}
+
+	/**
+	 * @description This method helps to prepare output message
+	 * @param details - An object
+	 * @example
+	 * 
+	 * 		const messageData = {
+	 * 			foregroundColor: colors.FgWhite,
+	 * 			backgroundColor: colors.BgRed,
+	 * 			levelName: levelName,
+	 * 			message: message,
+	 * 			reset: colors.Reset
+	 * 		}
+	 */
+	private setMessage(details: any) {
+		const logDate = this.getDateWithTime()
+
+		let logString = `[${logDate}] - ${details.foregroundColor}${details.backgroundColor} ${details.levelName} ${details.reset} - `
+
+		logString += `${details.message}`
+		
+		logString = logString.trim()
+
+		return logString
 	}
 
 	/**
@@ -43,14 +101,19 @@ class Logger {
 	debug(message: string, context: any) {
 		const logCode = LogTypes.DEBUG
 		const levelName = Levels.GET(logCode)
-		const colors = Colors.Node //Colors.GET('node')
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
 		
+		const messageData = {
+			foregroundColor: colors.FgWhite,
+			backgroundColor: colors.BgRed,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
 
-		/**
-		 * @todo This section will change. This needs formatted output
-		 */
-		console.log(logCode, levelName)
-		console.log(`${colors.FgWhite}${colors.BgRed}%s`, `${levelName}`, colors.Reset, '-', message);
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 	}
 	
 	/**
