@@ -40,7 +40,7 @@ class Logger {
 			this.instance = this
 		}
 
-		return this
+		return this.instance
 
 	}
 
@@ -59,6 +59,7 @@ class Logger {
 	/**
 	 * @description This method will help to customize log messages.
 	 * @param formatStr - The string which will formatted
+	 * @function setFormat
 	 * @todo
 	 */
 	public setFormat(formatStr: string) {
@@ -68,6 +69,7 @@ class Logger {
 	/**
 	 * @description This method helps to prepare output message
 	 * @param details - An object
+	 * @function setMessage
 	 * @example
 	 * 
 	 * 		const messageData = {
