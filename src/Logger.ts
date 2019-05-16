@@ -2,6 +2,8 @@ import LogTypes, { Levels } from './LogTypes'
 import LogServer from './LogServer'
 import Colors from './Colors'
 
+// inspired by: https://stackify.com/php-monolog-tutorial/
+
 /**
  * @description Logger class. This class will have logging functions
  * @class Logger
@@ -54,10 +56,28 @@ class Logger {
 		return `${date} ${time}`
 	}
 
+	/**
+	 * @description This method will help to customize log messages.
+	 * @param formatStr - The string which will formatted
+	 * @todo
+	 */
 	public setFormat(formatStr: string) {
 		this.isFormatted = true
 	}
 
+	/**
+	 * @description This method helps to prepare output message
+	 * @param details - An object
+	 * @example
+	 * 
+	 * 		const messageData = {
+	 * 			foregroundColor: colors.FgWhite,
+	 * 			backgroundColor: colors.BgRed,
+	 * 			levelName: levelName,
+	 * 			message: message,
+	 * 			reset: colors.Reset
+	 * 		}
+	 */
 	private setMessage(details: any) {
 		const logDate = this.getDateWithTime()
 
