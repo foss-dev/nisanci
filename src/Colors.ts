@@ -1,6 +1,19 @@
 // reference: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 
 /**
+ * ansi color rgb reference: https://stackoverflow.com/a/33206814/3821823
+ * description:
+ *      \033[38;2;<r>;<g>;<b>m     #Select RGB foreground color
+ *      \033[48;2;<r>;<g>;<b>m     #Select RGB background color
+ * example 1:
+ *      \033[38;2;255;82;197;48;2;155;106;0mHello
+ * example 2:
+ *      console.log("\033[48;2;255;69;0mHello", "\x1b[0m")
+ * rgb colors: https://www.rapidtables.com/web/color/RGB_Color.html
+ * true color: https://gist.github.com/XVilka/8346728
+ */
+
+/**
  * This colors only works on Node Runtime
  */
 
