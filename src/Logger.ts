@@ -107,7 +107,7 @@ class Logger {
 		
 		const messageData = {
 			foregroundColor: colors.FgWhite,
-			backgroundColor: colors.BgRed,
+			backgroundColor: colors.BgCyan,
 			levelName: levelName,
 			message: message,
 			reset: colors.Reset
@@ -130,7 +130,19 @@ class Logger {
 		const logCode = LogTypes.INFO
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgWhite,
+			backgroundColor: colors.BgBlue,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 	
@@ -146,7 +158,19 @@ class Logger {
 		const logCode = LogTypes.NOTICE
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgWhite,
+			backgroundColor: colors.BgGreen,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 
@@ -162,7 +186,19 @@ class Logger {
 		const logCode = LogTypes.WARNING
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgBlue,
+			backgroundColor: colors.BgYellow,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 	
@@ -178,7 +214,19 @@ class Logger {
 		const logCode = LogTypes.ERROR
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgWhite,
+			backgroundColor: colors.BgRed,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 	
@@ -194,7 +242,19 @@ class Logger {
 		const logCode = LogTypes.CRITICAL
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgWhite,
+			backgroundColor: colors.BgMagenta,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 	
@@ -210,7 +270,19 @@ class Logger {
 		const logCode = LogTypes.ALERT
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgBlack,
+			backgroundColor: colors.BgWhite,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 	
@@ -226,7 +298,19 @@ class Logger {
 		const logCode = LogTypes.EMERGENCY
 		const levelName = Levels.GET(logCode)
 
-		console.log(logCode, levelName)
+		const colors = this.config.platform == "web" ? Colors["Web"] : Colors["Node"]
+		
+		const messageData = {
+			foregroundColor: colors.FgBlack,
+			backgroundColor: colors.BgRed,
+			levelName: levelName,
+			message: message,
+			reset: colors.Reset
+		}
+
+		const messageOutput = this.setMessage(messageData)
+
+		console.log(messageOutput)
 
 	}
 }
